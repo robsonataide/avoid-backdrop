@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 /**
  * @title Basic menu
@@ -12,11 +13,17 @@ export class MenuOverviewExample {
   hasBackdrop: boolean;
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
+  constructor(private overlay: OverlayContainer) {}
+
   update() {
     this.trigger.closeMenu();
     setTimeout(() => {
       this.trigger.openMenu();
     }, 200);
+  }
+
+  showProblem() {
+    alert('The problem...');
   }
 }
 

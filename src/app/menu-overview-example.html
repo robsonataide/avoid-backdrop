@@ -1,12 +1,29 @@
-<mat-checkbox [(ngModel)]="hasBackdrop" (click)="update()"
-  >Backdrop</mat-checkbox
->
+<p>
+  <mat-checkbox [(ngModel)]="hasBackdrop" (click)="update()"
+    >Backdrop</mat-checkbox
+  >
+</p>
+<p>
+  <mat-checkbox [(ngModel)]="isAvoidClickOutside"
+    >Avoid Click Outside</mat-checkbox
+  >
+</p>
 
 <hr />
 <!-- #docregion mat-menu-trigger-for -->
-<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<button
+  mat-button
+  [matMenuTriggerFor]="menu"
+  (menuOpened)="avoidClickOutside()"
+>
+  Menu
+</button>
 <!-- #enddocregion mat-menu-trigger-for -->
-<mat-menu #menu="matMenu" [hasBackdrop]="hasBackdrop">
+<mat-menu
+  #menu="matMenu"
+  backdropClass="controlled"
+  [hasBackdrop]="hasBackdrop"
+>
   <button mat-menu-item>Item 1</button>
   <button mat-menu-item>Item 2</button>
 </mat-menu>

@@ -12,7 +12,11 @@ body {
   margin: 8px;
 }
 
-
+.clone {
+  display: block;
+  background-color: red;
+  opacity: 0.1;
+}
 /**  Copyright 2021 Google LLC. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
     can be found in the LICENSE file at http://angular.io/license */

@@ -12,9 +12,28 @@ body {
   margin: 8px;
 }
 
+.controlled {
+  /*
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(204, 204, 204, 0.2) 10px,
+    rgba(204, 204, 204, 0.2) 20px
+  );*/
+  background-color: rgba(204, 204, 204, 0.5);
+}
+
 .clone {
   display: block;
-  background-color: red;
+
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(94, 0, 0, 0.521) 10px,
+    rgba(94, 0, 0, 0.521) 20px
+  );
   opacity: 0.1;
 }
 /**  Copyright 2021 Google LLC. All Rights Reserved.

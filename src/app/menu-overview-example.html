@@ -2,7 +2,9 @@
   <mat-checkbox [(ngModel)]="hasBackdrop">Backdrop</mat-checkbox>
 </p>
 <p>
-  <mat-checkbox [(ngModel)]="isAvoidClickOutside"
+  <mat-checkbox
+    [(ngModel)]="isAvoidClickOutside"
+    matTooltip="Creates a backdrop clone that there is not event listeners"
     >Avoid Click Outside</mat-checkbox
   >
 </p>
@@ -33,5 +35,3 @@
 >
   Alert
 </button>
-
-<div class="clone">ddsdsdsd</div>

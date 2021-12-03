@@ -13,20 +13,10 @@ body {
 }
 
 .controlled {
-  /*
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(204, 204, 204, 0.2) 10px,
-    rgba(204, 204, 204, 0.2) 20px
-  );*/
   background-color: rgba(204, 204, 204, 0.5);
 }
 
 .clone {
-  display: block;
-
   background: repeating-linear-gradient(
     45deg,
     transparent,
@@ -36,6 +26,3 @@ body {
   );
   opacity: 0.1;
 }
-/**  Copyright 2021 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license */

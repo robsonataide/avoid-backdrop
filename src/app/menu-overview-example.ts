@@ -1,4 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { ThisReceiver } from '@angular/compiler/src/compiler';
 import { Component, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 
@@ -10,42 +11,51 @@ import { MatMenuTrigger } from '@angular/material/menu';
   templateUrl: 'menu-overview-example.html',
 })
 export class MenuOverviewExample {
-  hasBackdrop = true;
-  isAvoidClickOutside: boolean;
+  valid = false;
+
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
-  constructor(private overlay: OverlayContainer) {}
+  constructor() {}
 
   showProblem() {
     alert('The problem...');
   }
 
-  avoidClickOutside() {
-    const overlayers = this.overlay
-      .getContainerElement()
-      .querySelectorAll('.controlled');
-
-    console.log(overlayers);
-
-    if (overlayers && this.isAvoidClickOutside) {
-      overlayers.forEach((element) => {
-        const clone = element.cloneNode(true);
-        (clone as Element).classList.add('clone');
-        clone.addEventListener('click', (event: Event) => {
-          if (confirm('Not allowed... Do you want remove this behaviour?!')) {
-            this.removeCloneBackdrop();
-          }
-        });
-
-        element.parentNode.insertBefore(clone, element.nextSibling);
-      });
+  validate() {
+    if (this.valid) {
+      this.removeCloneBackdrop();
+    } else {
+      this.createCustomBackdrop();
     }
   }
-  private removeCloneBackdrop() {
+
+  createCustomBackdrop() {
+    const clones = document.querySelectorAll('.clone');
+    if (clones?.length === 0) {
+      const overlayers = document.querySelectorAll('.controlled');
+      if (overlayers) {
+        overlayers.forEach((element) => {
+          const clone = element.cloneNode(true);
+          (clone as Element).classList.add('clone');
+          clone.addEventListener('click', this.select.bind(this));
+          element.parentNode.insertBefore(clone, element.nextSibling);
+        });
+      }
+    }
+  }
+
+  select(event: Event) {
+    if (!this.valid) {
+      event.stopPropagation();
+      alert('It should be valid!');
+    } else {
+      this.removeCloneBackdrop();
+      (document.querySelector('.controlled') as HTMLDivElement).click();
+    }
+  }
+
+  removeCloneBackdrop() {
     this.isAvoidClickOutside = false;
-    this.overlay
-      .getContainerElement()
-      .querySelectorAll('.clone')
-      .forEach((element) => element.remove());
+    document.querySelectorAll('.clone').forEach((element) => element.remove());
   }
 }

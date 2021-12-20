@@ -1,37 +1,18 @@
-<p>
-  <mat-checkbox [(ngModel)]="hasBackdrop">Backdrop</mat-checkbox>
-</p>
-<p>
-  <mat-checkbox
-    [(ngModel)]="isAvoidClickOutside"
-    matTooltip="Creates a backdrop clone that there is not event listeners"
-    >Avoid Click Outside</mat-checkbox
-  >
-</p>
-
 <hr />
 
 <button
-  mat-button
+  mat-raised-button
   [matMenuTriggerFor]="menu"
-  (menuOpened)="avoidClickOutside()"
+  (menuOpened)="validate()"
+  (menuClosed)="removeCloneBackdrop()"
 >
   Menu
 </button>
 
-<mat-menu
-  #menu="matMenu"
-  backdropClass="controlled"
-  [hasBackdrop]="hasBackdrop"
->
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
+<mat-menu #menu="matMenu" backdropClass="controlled">
+  <div mat-menu-item (click)="$event.stopPropagation()">
+    <mat-checkbox [(ngModel)]="valid" (change)="validate()">Valid</mat-checkbox>
+  </div>
+  <button mat-menu-item (click)="select($event)">Item 1</button>
+  <button mat-menu-item (click)="select($event)">Item 2</button>
 </mat-menu>
-
-<button
-  mat-raised-button
-  (click)="showProblem()"
-  matTooltip="Heyyyy click me!!!"
->
-  Alert
-</button>
